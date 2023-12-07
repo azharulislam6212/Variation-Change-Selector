@@ -1,4 +1,4 @@
-
+<script>
     var product_encodedObject = document.querySelector('script[data-product-json]').textContent;
     var product_dataObject = JSON.parse(product_encodedObject);
     var variants = product_dataObject.variants;
@@ -41,5 +41,5 @@
             }else{
                 $(".selectric .label").removeClass('active');
             }
-
       });
+     </script>
