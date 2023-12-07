@@ -1,0 +1,45 @@
+
+    var product_encodedObject = document.querySelector('script[data-product-json]').textContent;
+    var product_dataObject = JSON.parse(product_encodedObject);
+    var variants = product_dataObject.variants;
+    let userSelectValues = [...variants];
+
+
+    $('.select-btn').on('change', function() {
+        userSelectValues = [];
+        userSelectValues.push(this.value);
+
+          let matchedVariants = variants.find(variant => {
+                let match = true;
+                    
+                for (let i = 0; i < userSelectValues.length; i++) {
+                    if (userSelectValues.indexOf(variant.options[i]) == -1) {
+                        match = false;
+                        break;
+                    }
+                }
+                
+                return match;
+            });
+
+          
+            document.querySelector('.single-product-form input[name="id"]').value = matchedVariants.id;
+    
+            var price =   document.querySelector('.related-item-price .price');
+
+
+            if(price != null ){
+                price.innerHTML = `${shopCurrencySign}${(matchedVariants.price / 100).toFixed(2)}`;
+              }
+
+            if( matchedVariants.featured_image != null){
+
+                $(".selectric .label").addClass('active');
+            
+              $(".selectric .label").css({ "--url": 'url('+matchedVariants.featured_image.src+')' });
+
+            }else{
+                $(".selectric .label").removeClass('active');
+            }
+
+      });
