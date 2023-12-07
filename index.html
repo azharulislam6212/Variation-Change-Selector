@@ -1,3 +1,12 @@
+   <script>
+      let shopCurrencySign = {{ cart.currency.symbol | json }};
+    </script>
+
+   {% unless product == empty %}
+        <script type="application/json" data-product-json>
+          {{ product | json }}
+        </script>
+    {% endunless %}
 <script>
     var product_encodedObject = document.querySelector('script[data-product-json]').textContent;
     var product_dataObject = JSON.parse(product_encodedObject);
