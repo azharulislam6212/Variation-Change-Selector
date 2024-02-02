@@ -79,6 +79,8 @@
         </script>
     {% endunless %}
 <script>
+var datajson = document.querySelector('script[data-product-json]');
+if(datajson != null){
     var product_encodedObject = document.querySelector('script[data-product-json]').textContent;
     var product_dataObject = JSON.parse(product_encodedObject);
     var variants = product_dataObject.variants;
@@ -122,4 +124,6 @@
                 $(".selectric .label").removeClass('active');
             }
       });
+
+}
      </script>
